@@ -1,0 +1,37 @@
+repositories:
+  interactive_marker_twist_server:
+    type: git
+    url: https://github.com/ros-visualization/interactive_marker_twist_server.git
+    version: foxy-devel
+  jackal:
+    type: git
+    url: https://github.com/jackal/jackal.git
+    version: foxy-devel
+  jackal_desktop:
+    type: git
+    url: https://github.com/jackal/jackal_desktop.git
+    version: foxy-devel
+  jackal_robot:
+    type: git
+    url: https://github.com/jackal/jackal_robot.git
+    version: foxy-devel
+  jackal_simulator:
+    type: git
+    url: https://github.com/jackal/jackal_simulator.git
+    version: foxy-devel
+  micro_ros_setup:
+    type: git
+    url: https://github.com/micro-ROS/micro_ros_setup.git
+    version: humble
+  uros/micro-ROS-Agent:
+    type: git
+    url: https://github.com/micro-ROS/micro-ROS-Agent.git
+    version: humble
+  uros/micro_ros_msgs:
+    type: git
+    url: https://github.com/micro-ROS/micro_ros_msgs.git
+    version: humble
+  wireless:
+    type: git
+    url: https://github.com/clearpathrobotics/wireless.git
+    version: foxy-devel
