@@ -12,8 +12,8 @@ I recommend starting with a new SSD instead of wiping your old SSD. It is a good
 I used the NUMSR router in the Northwestern MSR lab. It is already set up, so all you need to do is to connect the Jackal to the NUMSR WiFi network.
 #### 3. Installing ROS2 Humble
 * Install ROS2 Humble on your computer and the Jackal. Instructions can be found [here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
-* When installing ROS2 packages, I recommend installing `ros-humble-desktop-full`.
-* Follow the instructions all the way up to "Environment setup."
+* When installing ROS2 packages, I recommend installing `ros-humble-desktop-full`
+* Follow the instructions all the way up to "Environment setup"
 
 #### 4. Building packages from source and installing dependencies on the Jackal
 All of the packages for the Jackal are not available for ROS2 Humble, so they need to be built from source.
@@ -30,7 +30,7 @@ The packages in the following repositories need to be built from source:
 Follow the instructions [here](https://www.clearpathrobotics.com/assets/guides/foxy/jackal/JackalInstallRobotSoftware.html) to update the firmware, build the packages from source, and install dependencies. 
 
 ##### Updating the firmware
-When updating the firmware, running `sudo apt-get install ros-foxy-jackal-firmware` will not work. Instead go [here](https://packages.clearpathrobotics.com/stable/ubuntu/pool/main/j/jackal-firmware/) and download ros-foxy-jackal-firmware_1.0.0-focal_all.deb. Then run the following in the directory where you have this file:
+When updating the firmware, running `sudo apt-get install ros-foxy-jackal-firmware` will not work. Instead, go [here](https://packages.clearpathrobotics.com/stable/ubuntu/pool/main/j/jackal-firmware/) and download ros-foxy-jackal-firmware_1.0.0-focal_all.deb. Then run the following in the directory where you have this file:
 ```
 sudo apt install ./ros-foxy-jackal-firmware_1.0.0-focal_all.deb
 ```
@@ -80,10 +80,10 @@ The process of pairing the PS4 controller to the Jackal's computer is the follow
 In order to use the Velodyne, the Jackal needs to be set up to interface with it over the NUMSR WiFi network. The IP address of the Velodyne is 192.168.1.201.
 * Go to Settings -> Network
 * Under "Wired," it will tell you which cable is plugged in. Click on the gear icon to the right.
-* Go to the IPv4 tab and change the IPv4 Method to "Manual."
+* Go to the IPv4 tab and change the IPv4 Method to "Manual"
 * Create and enter an IP address for the ethernet port. It should be something like "192.168.1.XXX".
-* Enter the subnet mask, which is 255.255.255.0.
-* Click "Apply" to save changes.
+* Enter the subnet mask, which is 255.255.255.0
+* Click "Apply" to save changes
 * Toggle off the button next to the cable name and toggle it back on
 
 In addition, you need to install the velodyne package. This can be done by running:
@@ -91,7 +91,7 @@ In addition, you need to install the velodyne package. This can be done by runni
 sudo apt install ros-humble-velodyne
 ```
 ## Starting the Jackal
-* Turn on the Jackal, enable the motor stop, and press the "M" button.
+* Turn on the Jackal, enable the motor stop, and press the "M" button
 * SSH into the Jackal from your computer
 * Source the workspace
-* Run `ros2 launch jackal_robot bringup.launch.py`.
+* Run `ros2 launch jackal_robot bringup.launch.py`
