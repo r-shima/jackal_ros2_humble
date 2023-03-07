@@ -29,20 +29,20 @@ The packages in the following repositories need to be built from source:
 
 Follow the instructions [here](https://www.clearpathrobotics.com/assets/guides/foxy/jackal/JackalInstallRobotSoftware.html) to update the firmware, build the packages from source, and install dependencies. 
 
-##### Updating the firmware
-When updating the firmware, running `sudo apt-get install ros-foxy-jackal-firmware` will not work. Instead, go [here](https://packages.clearpathrobotics.com/stable/ubuntu/pool/main/j/jackal-firmware/) and download ros-foxy-jackal-firmware_1.0.0-focal_all.deb. Then run the following in the directory where you have this file:
+#### Updating the firmware
+When updating the firmware, running `sudo apt-get install ros-foxy-jackal-firmware` will not work. Instead, go [here](https://packages.clearpathrobotics.com/stable/ubuntu/pool/main/j/jackal-firmware/) and download `ros-foxy-jackal-firmware_1.0.0-focal_all.deb`. Then run the following in the directory where you have this file:
 ```
 sudo apt install ./ros-foxy-jackal-firmware_1.0.0-focal_all.deb
 ```
 Once you install the firmware, follow the rest of the instructions on updating the firmware.
-##### Cloning and building packages
+#### Cloning and building packages
 Make sure to clone the micro_ros_setup repositories in the humble branch and everything else in the foxy branch. When sourcing the ROS2 installation, you should be replacing `foxy` with `humble`. Skip "Installing the Systemd Job."
 
 Please note that the instructions from Clearpath do not tell you to clone the interactive_marker_twist_server repository. To clone it, run:
 ```
 git clone -b foxy-devel https://github.com/ros-visualization/interactive_marker_twist_server.git
 ```
-After cloning the necessary packages, replace `CMakeLists.txt` and `marker_server.cpp` in the interactive_marker_twist_server package, replace `jackal_hardware.cpp` and `jackal_hardware.hpp` in the jackal_robot package, and replace `control.launch.py` in the jackal_control package with the ones in my repository. These files have been modified to work with ROS2 Humble.
+After cloning the necessary packages, replace `CMakeLists.txt` and `marker_server.cpp` in the interactive_marker_twist_server package, replace `jackal_hardware.cpp` and `jackal_hardware.hpp` in the jackal_robot package, and replace `control.launch.py` in the jackal_control package with the ones in this repository. These files have been modified to work with ROS2 Humble.
 
 Now, install the following packages using `sudo apt install`:
 * ros-humble-velodyne-description
@@ -58,12 +58,12 @@ The packages in the following repositories need to be built from source:
 
 In addition, follow the instructions [here](https://www.clearpathrobotics.com/assets/guides/foxy/jackal/JackalInstallDesktopSoftware.html) to build additional Jackal packages. Make sure to clone the repositories in the foxy-devel branch.
 #### 6. Setting up ROS2 to work between your computer and the Jackal
-Make sure your computer and the Jackal's computer are on the NUMSR WiFi network. Once you do this, you can easily SSH into the Jackal's computer from your computer by running:
+Add `export ROS_DOMAIN_ID=<YourID>` to the `~/.bashrc` on your computer as well as the Jackal's computer. `<YourID>` can be any number between 0 and 101, inclusive, and the one on your computer should match the one on the Jackal's computer. Make sure your computer is on the NUMSR WiFi network. Once you do all of this, you can easily ssh into the Jackal's computer from your computer by running:
 ```
-ssh jackal@jackal-desktop
+ssh -oSendEnv=ROS_DOMAIN_ID jackal@jackal-desktop
 ```
 #### 7. Setting up PS4 controller
-The process of pairing the PS4 controller to the Jackal's computer is the following:
+The process of pairing the PS4 controller with the Jackal's computer is the following:
 * Ensure the PS4 controller is fully charged before starting
 * Start the bluetoothctl utility with `sudo bluetoothctl`
 * Run `agent on`
@@ -85,6 +85,7 @@ In order to use the Velodyne, the Jackal needs to be set up to interface with it
 * Enter the subnet mask, which is 255.255.255.0
 * Click "Apply" to save changes
 * Toggle off the button next to the cable name and toggle it back on
+* Go to http://192.168.1.201. You should be able to see the Velodyne's web interface.
 
 In addition, you need to install the velodyne package. This can be done by running:
 ```
@@ -92,6 +93,7 @@ sudo apt install ros-humble-velodyne
 ```
 ## Starting the Jackal
 * Turn on the Jackal, enable the motor stop, and press the "M" button
+* Pair the PS4 controller with the Jackal's computer via Bluetooth
 * SSH into the Jackal from your computer
 * Source the workspace
-* Run `ros2 launch jackal_robot bringup.launch.py`
+* Run `ros2 launch jackal_robot bringup.launch.py` to drive the Jackal
