@@ -58,7 +58,7 @@ The packages in the following repositories need to be built from source:
 
 In addition, follow the instructions [here](https://www.clearpathrobotics.com/assets/guides/foxy/jackal/JackalInstallDesktopSoftware.html) to build additional Jackal packages. Make sure to clone the repositories in the foxy-devel branch.
 #### 6. Setting up ROS2 to work between your computer and the Jackal
-Add `export ROS_DOMAIN_ID=<YourID>` to the `~/.bashrc` on your computer as well as the Jackal's computer. `<YourID>` can be any number between 0 and 101, inclusive, and the one on your computer should match the one on the Jackal's computer. Make sure your computer is on the NUMSR WiFi network. Once you do all of this, you can easily ssh into the Jackal's computer from your computer by running:
+Add `export ROS_DOMAIN_ID=<YourID>` to the `~/.bashrc` on your computer as well as the Jackal's computer. `<YourID>` can be any number between 0 and 101, inclusive, and the one on your computer should match the one on the Jackal's computer. Make sure your computer is on the NUMSR WiFi network. Once you do all of this, you can easily SSH into the Jackal's computer from your computer by running:
 ```
 ssh -oSendEnv=ROS_DOMAIN_ID jackal@jackal-desktop
 ```
