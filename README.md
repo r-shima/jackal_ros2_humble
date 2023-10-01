@@ -1,5 +1,5 @@
-# Setting Up the Clearpath Jackal UGV on ROS2 Humble
-This README provides instructions for making the Clearpath Jackal UGV run on ROS2 Humble. Currently, the packages for the Jackal do not officially support ROS2 Humble; therefore, they had to be built from source, and required a lot of debugging.
+# Setting Up the Clearpath Jackal UGV on ROS 2 Humble
+This README provides instructions for making the Clearpath Jackal UGV run on ROS 2 Humble. Currently, the packages for the Jackal do not officially support ROS 2 Humble; therefore, they had to be built from source, and required a lot of debugging.
 ## Instructions
 I recommend starting with a new SSD instead of wiping your old SSD. It is a good idea to have a working system as a backup in case you make mistakes.
 #### 1. Installing Ubuntu 22.04 LTS
@@ -10,13 +10,13 @@ I recommend starting with a new SSD instead of wiping your old SSD. It is a good
 
 #### 2. Setting up the wireless network
 I used the NUMSR router in the Northwestern MSR lab. It is already set up, so all you need to do is to connect the Jackal to the NUMSR WiFi network.
-#### 3. Installing ROS2 Humble
-* Install ROS2 Humble on your computer and the Jackal. Instructions can be found [here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
-* When installing ROS2 packages, I recommend installing `ros-humble-desktop-full`
+#### 3. Installing ROS 2 Humble
+* Install ROS 2 Humble on your computer and the Jackal. Instructions can be found [here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
+* When installing ROS 2 packages, I recommend installing `ros-humble-desktop-full`
 * Follow the instructions all the way up to "Environment setup"
 
 #### 4. Building packages from source and installing dependencies on the Jackal
-All of the packages for the Jackal are not available for ROS2 Humble, so they need to be built from source.
+All of the packages for the Jackal are not available for ROS 2 Humble, so they need to be built from source.
 
 The packages in the following repositories need to be built from source:
 * [jackal](https://github.com/jackal/jackal/tree/foxy-devel)
@@ -36,13 +36,13 @@ sudo apt install ./ros-foxy-jackal-firmware_1.0.0-focal_all.deb
 ```
 Once you install the firmware, follow the rest of the instructions on updating the firmware.
 #### Cloning and building packages
-Make sure to clone the micro_ros_setup repositories in the humble branch and everything else in the foxy branch. When sourcing the ROS2 installation, you should be replacing `foxy` with `humble`. Skip "Installing the Systemd Job."
+Make sure to clone the micro_ros_setup repositories in the humble branch and everything else in the foxy branch. When sourcing the ROS 2 installation, you should be replacing `foxy` with `humble`. Skip "Installing the Systemd Job."
 
 Please note that the instructions from Clearpath do not tell you to clone the interactive_marker_twist_server repository. To clone it, run:
 ```
 git clone -b foxy-devel https://github.com/ros-visualization/interactive_marker_twist_server.git
 ```
-After cloning the necessary packages, replace `CMakeLists.txt` and `marker_server.cpp` in the interactive_marker_twist_server package, replace `jackal_hardware.cpp` and `jackal_hardware.hpp` in the jackal_robot package, and replace `control.launch.py` in the jackal_control package with the ones in this repository. These files have been modified to work with ROS2 Humble.
+After cloning the necessary packages, replace `CMakeLists.txt` and `marker_server.cpp` in the interactive_marker_twist_server package, replace `jackal_hardware.cpp` and `jackal_hardware.hpp` in the jackal_robot package, and replace `control.launch.py` in the jackal_control package with the ones in this repository. These files have been modified to work with ROS 2 Humble.
 
 Now, install the following packages using `sudo apt install`:
 * ros-humble-velodyne-description
@@ -57,7 +57,7 @@ The packages in the following repositories need to be built from source:
 * [jackal_simulator](https://github.com/jackal/jackal_simulator/tree/foxy-devel)
 
 In addition, follow the instructions [here](https://www.clearpathrobotics.com/assets/guides/foxy/jackal/JackalInstallDesktopSoftware.html) to build additional Jackal packages. Make sure to clone the repositories in the foxy-devel branch.
-#### 6. Setting up ROS2 to work between your computer and the Jackal
+#### 6. Setting up ROS 2 to work between your computer and the Jackal
 Add `export ROS_DOMAIN_ID=<YourID>` to the `~/.bashrc` on your computer as well as the Jackal's computer. `<YourID>` can be any number between 0 and 101, inclusive, and the one on your computer should match the one on the Jackal's computer. Make sure your computer is on the NUMSR WiFi network. Once you do all of this, you can easily SSH into the Jackal's computer from your computer by running:
 ```
 ssh -oSendEnv=ROS_DOMAIN_ID jackal@jackal-desktop
